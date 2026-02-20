@@ -27,20 +27,22 @@ def build_executable():
     """Build the executable using PyInstaller"""
     print("Building OpenCut executable...")
     
-    # PyInstaller command
+    # PyInstaller command - Linux uses : separator
     cmd = [
         'pyinstaller',
         '--onefile',
         '--windowed',
         '--name', 'OpenCut',
-        '--add-data', 'src;src',  # Include src directory
+        '--add-data', 'src:src',  # Linux uses : separator
         '--hidden-import', 'tkinter',
+        '--hidden-import', 'customtkinter',
         '--hidden-import', 'PIL',
         '--hidden-import', 'mss',
         '--hidden-import', 'imageio',
         '--hidden-import', 'numpy',
         '--collect-all', 'imageio',
         '--collect-all', 'mss',
+        '--collect-all', 'customtkinter',
         'main.py'
     ]
     

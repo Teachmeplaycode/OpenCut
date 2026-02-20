@@ -9,7 +9,7 @@ import os
 # Add src directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
-from gui import OpenCutApp
+from gui_modern import OpenCutModernApp as OpenCutApp
 
 def main():
     """Main entry point for the application"""
