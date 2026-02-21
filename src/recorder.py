@@ -5,11 +5,9 @@ Handles screen capture and frame storage
 
 import threading
 import time
-import queue
 from typing import Optional, Tuple, List, Callable
 import mss
 import mss.tools
-from PIL import Image
 import numpy as np
 
 
@@ -79,8 +77,8 @@ class ScreenRecorder:
                     # Convert to numpy array
                     img = np.array(screenshot)
                     
-                    # Convert BGRA to RGB
-                    img = img[:, :, :3]
+                    # 关键修改：去除 Alpha 透明通道，并将 BGR 反转为 RGB
+                    img = img[:, :, :3][:, :, ::-1]
                     
                     self.frames.append(img)
                     self.frame_count += 1
